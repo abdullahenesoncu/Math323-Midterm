@@ -1,0 +1,275 @@
+\documentclass{article}
+
+% If you're new to LaTeX, here's some short tutorials:
+% https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes
+% https://en.wikibooks.org/wiki/LaTeX/Basics
+
+% Formatting
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[titletoc,title]{appendix}
+
+% Math
+% https://www.overleaf.com/learn/latex/Mathematical_expressions
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+
+% Images
+% https://www.overleaf.com/learn/latex/Inserting_Images
+% https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+\usepackage{graphicx,float}
+
+% Tables
+% https://www.overleaf.com/learn/latex/Tables
+% https://en.wikibooks.org/wiki/LaTeX/Tables
+
+% Algorithms
+% https://www.overleaf.com/learn/latex/algorithms
+% https://en.wikibooks.org/wiki/LaTeX/Algorithms
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{algorithmic}
+
+% Code syntax highlighting
+% https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted
+\usepackage{minted}
+\usemintedstyle{borland}
+
+% References
+% https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX
+% https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
+\usepackage{biblatex}
+\addbibresource{references.bib}
+\usepackage{amsthm,amssymb}
+
+\newcounter{problem}
+\newcounter{solution}
+
+\newcommand\Problem{%
+  \stepcounter{problem}%
+  \textbf{Problem \theproblem.}~%
+  \setcounter{solution}{0}%
+}
+
+\newcommand\TheSolution{%
+  \textbf{\\Solution:}\\%
+}
+
+\newcommand\ASolution{%
+  \stepcounter{solution}%
+  \textbf{Solution \thesolution:}\\%
+}
+
+% Title content
+\title{Discussion on Gaussian Integers}
+\author{Abdullah Enes ÖNCÜ}
+\date{December 22, 2020}
+
+\begin{document}
+
+\maketitle
+
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+
+% Abstract
+\begin{abstract}
+    In this paper we will mention about Gaussian Integers and their relation to prime numbers and perfect squares.
+\end{abstract}
+
+% Introduction and Overview
+\section{Some background we will use}
+
+\begin{enumerate}
+\item Let $a,b \in \mathbb{Z}.$ We know that $a^2 \equiv 0 \; or \; 1 (mod\; 4)$. Then we can say that $a^2+b^2 \equiv 0, \; 1, \; or \; 2(mod\; 4)$.
+\item On the other hand, we know that if $p$ is an odd prime, $p \equiv 1 \; or \; 3(mod\;4)$.
+\end{enumerate}
+By 1. and 2., if an odd prime is of form $4n+3$, it can not be written as sum of squares.
+
+\section{Primes can be written as sum of two squares}
+
+I don't want to go bottom up. I firstly mention about theorem.
+
+\begin{theorem}
+Let $p \in \mathbb{N}$ be a prime number of form $4n+1$. Then there exist $a,b\in \mathbb{Z}$ such that $a^2+b^2=p$.
+\end{theorem}
+
+\begin{proof}
+Assume two things, which will be proven later:
+\begin{enumerate}
+    \item We can find $x\in \mathbb{Z}$ such that $x^2\equiv-1(mod\; p)$.
+    \item Let $c\in\mathbb{Z}$ and $c<p$. If $cp=x^2+1$ for some $x\in{Z}$, then $p$ can be written as sum of two squares.
+\end{enumerate}
+\: We can find $x_1\in\mathbb{Z}$ such that $x_1^2\equiv-1(mod\; p)$ by $(1.)$. Then let $x_2=p-x_1$ and also $x_2^2\equiv-1(mod\; p)$. Say $x=\min(x_1, x_2)$. We know that $x<p/2$. 
+Then for some $c\in\mathbb{Z}$, $x^2+1=cp$. Because $x<p/2$, $cp < p^2/4+1$ and this means $c<p$.
+By $(2.)$, there exist $a,b\in \mathbb{Z}$ such that $a^2+b^2=p$.
+\end{proof}
+
+\begin{lemma}
+If $p$ is a prime of form $4n+1$, then there exist $x\in\mathbb{Z}$ such that $x^2\equiv-1(mod\;p)$.
+\end{lemma}
+\begin{proof}
+Let $x=(-1)(-2)(-3)...(-\frac{p-1}{2})$. There is even number of term because $\frac{4n+1-1}{2}=2n$ and so $x=\frac{p-1}{2}!$
+On the other hand, basically $x=(p-1)(p-2)(p-3)...(p-\frac{p-1}{2})$. \\ 
+So $x^2=\frac{p-1}{2}!(\frac{p-1}{2}+1)(\frac{p-1}{2}+2)(\frac{p-1}{2}+3)...(p-1)=(p-1)!$.\\
+By Wilson's Theorem, $x^2=(p-1)! \equiv -1(mod\;p)$.
+\end{proof}
+
+Let $J[i]$ be an Euclidian Ring and contains $a+bi$ for all $a,b\in\mathbb{Z}$ and it is named as Gaussian Integers.
+First of all, we will prove that it is an Euclidian Ring. It is easy to show it is a ring, so we skip it.\\
+\\
+Let define $d(x)=d(a+bi)=a^2+b^2$ for $x\in J[i]$ and for $a,b\in\mathbb{Z}$ such that $x=a+bi$. We easily see that if $x\neq 0$ then $d(x)\geq 1$. By properties of complex numbers, $d(xy)=d(x,y)$. For $x,y\in J[i]$ where $x,y\neq 0$, $d(x).1\leq d(x)d(y)=d(xy)$. So we should prove last part.
+
+\begin{lemma}
+Let $u,v\in J[i]$. Then there exist $t,r\in J[i]$ such that $v=tu+r$ where $d(r)<d(u)$.
+\end{lemma}
+
+\begin{proof}
+$\mathbb{Z}$ is a subring of $\mathbb{J}[i]$. We firstly show it for $u\in\mathbb{Z}.$ Let $v=a+bi$, $c^{'}=a\;mod\;u$ and let $c$ as the one have minimum absolute value of $c^{'}$ and $c^{'}-u$. Similarly, $d^{'}=b\;mod\;u$ and let $d$ as the one have minimum absolute value of $d^{'}$ and $d^{'}-u$. We know that, both $c$ and $d$ have absolute values less than or equal to {u/2}. So we know that, for some $e,f\in\mathbb{Z}$, $a=eu+c$ and $b=fu+d$. Moreover, $d(r)=d(c+di)\leq2(\frac{u}{2})^2<d(u)$. Condition is satisfied for $u\in\mathbb{Z}$.
+\end{proof}
+
+We proved that $\mathbb{J}[i]$ is a Euclidian Ring. Now we go for our second assumption in Theorem 1.
+
+\begin{lemma}
+Let $p$ be a prime number and $c$ is an integer which is relatively prime to $p$. If there exist two integers $x$ and $y$ satisfying $cp=x^2+y^2$, then there exist two integers $a$ and $b$ such that $p=a^2+b^2$.
+\end{lemma}
+
+\begin{proof}
+Suppose $p$ be a prime element of $\mathbb{J}[i]$. We know that, $x^2+y^2=(x+yi)(x-yi)$ and because $cp$ divides it and $(c, p)=1$, $p$ divides $x+yi$ or $x-yi$. Let $p$ divides $x+yi$. Then $x+yi=p(u+vi)$ and $p(u-vi)=x-yi$. So $p$ also divides $x-yi$. Because $cp=(x+yi)(x-yi)$, it means that $p^2|cp$ but it is not possible because $p$ and $c$ are relatively prime. Contradiction. So $p$ is not a prime element of $\mathbb{J}[i]$ and $p$ can be written as product of two non unit element in $\mathbb{J}[i]$, like $p=(A+Bi)(C+Di)$.\\\\
+Next, $p=(A+Bi)(C+Di)=(AC-BD)+i(AD+BC)$ and because $AD+BC=0$, $p$ also equals to $(A-Bi)(C-Di)$.
+So we can say that $p^2=(A+Bi)(A-Bi)(C+Di)(C-Di)=(A^2+B^2)(C^2+D^2)$. So because $A^2+B^2$ and $C^2+D^2$ both divides $p^2$ and both $A+Bi$ and $C+Di$ are not units, then $A^2+B^2=C^2+D^2=p$ and the lemma is proven.
+\end{proof}
+
+\section{Problems}
+
+\Problem{}
+Find all the units in $\mathbb{J}[i]$.
+\TheSolution{}{}
+Clearly known that, $1_{\mathbb{J}[i]}=1$. So if $x$ is a unit then there exists $b\in\mathbb{J}[i]$ such that xb = $1_{\mathbb{J}[i]}=1$. So $d(x)d(b) = d(1) = 1$ and because $d(x),d(b)>0$ and both are integers, $d(x)=d(b)=1$. There are four possible $x$'s satisfying $d(x)=1$ which are $1,-1,i,-i$ and also their inverses are exist and equal to $1,-1,-i,i$ respectively. So these four numbers are units of $\mathbb{J}[i]$.
+
+\Problem{}
+If $a+bi$ is not a unit, prove that $a^2+b^2>1$. 
+\TheSolution{}
+Assume that $a^2+b^2=1$. Then $(a+bi)(a-bi)=a^2+b^2=1$ and so $(a+bi)$ is a unit and it gives contradiction. Note: Doesn't care about 0.
+
+\Problem{}
+Find a greatest common divisor in $\mathbb{J}[i]$:
+\begin{enumerate}[label=\alph*]
+    \item gcd(3+4i, 4-3i)
+    \ASolution{}
+    Because 3+4i
+\end{enumerate}
+% Example Subsection
+\subsection{Subsection Title}
+This is a subsection.
+
+% Example Subsubsection
+\subsubsection{Subsubsection Title}
+This is a subsubsection.
+
+%  Theoretical Background
+\section{Theoretical Background}
+Add your theoretical background here. Some example text: As we learned from our textbook \cite{kutz_2013}, Fourier introduced the concept of representing a given function $f(x)$ by a trigonometric series of sines and cosines:
+\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty \left(a_n\cos{nx} + b_n\sin{nx}\right) \quad x \in (-\pi,\pi].
+    \label{eqn:fourierseries}
+\end{equation}
+You can reference numbered equations, figures, tables, algorithms, and code like this: Equation~\ref{eqn:fourierseries}, etc.
+
+% Algorithm Implementation and Development
+\section{Algorithm Implementation and Development}
+Add your algorithm implementation and development here. See Algorithm~\ref{alg:example} for how to include an algorithm in your document. This is how to make an \textit{ordered} list:
+\begin{enumerate}
+    \item Fluffy swallowed a marble.
+    \item I took Fluffy to the vet.
+    \item They took an ultrasound of Fluffy's intestines.
+\end{enumerate}
+
+\begin{algorithm}
+\begin{algorithmic}
+    \STATE{Import data from \texttt{Testdata.mat}}
+    \FOR{$j = 1:20$}
+        \STATE{Extract measurement $j$ from \texttt{Undata}}
+        \STATE{Do something useful}
+    \ENDFOR
+    \IF{$i\geq 5$} 
+        \STATE{$i\gets i-1$}
+    \ELSE
+        \IF{$i\leq 3$}
+            \STATE{$i\gets i+2$}
+        \ENDIF
+    \ENDIF 
+\end{algorithmic}
+\caption{Example Algorithm}
+\label{alg:example}
+\end{algorithm}
+
+% Computational Results
+\section{Computational Results}
+Add your computational results here. See Table~\ref{tab:mascots} for how to include a table in your document. See Figure~\ref{fig:dubs} for how to include figures in your document.
+
+\begin{table}
+    \centering
+    \begin{tabular}{rll}
+    & Name & Years \\
+    \hline
+    1 & Frosty & 1922-1930  \\
+    2 & Frosty II & 1930-1936 \\
+    3 & Wasky & 1946 \\
+    4 & Wasky II & 1947 \\
+    5 & Ski & 1954 \\
+    6 & Denali & 1958 \\
+    7 & King Chinook & 1959-1968\\
+    8 & Regent Denali & 1969 \\
+    9 & Sundodger Denali & 1981-1992 \\
+    10 & King Redoubt & 1992-1998 \\
+    11 & Prince Redoubt & 1998 \\
+    12 & Spirit & 1999-2008 \\
+    13 & Dubs I & 2009-2018 \\
+    14 & Dubs II & 2018-Present
+    \end{tabular}
+    \caption{UW mascots as described in \cite{washington_huskies}.}
+    \label{tab:mascots}
+\end{table}
+
+% begin{figure}[tb] % t = top, b = bottom, etc.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{dubs.jpg}
+    \caption{Here is a picture of Dubs \cite{webeck_2018}. Dubs did not swallow a marble.}
+    \label{fig:dubs}
+\end{figure}
+
+% Summary and Conclusions
+\section{Summary and Conclusions}
+Add your summary and conclusions here.
+
+% References
+\printbibliography
+
+% Appendices
+\begin{appendices}
+
+% MATLAB Functions
+\section{MATLAB Functions}
+Add your important MATLAB functions here with a brief implementation explanation. This is how to make an \textbf{unordered} list:
+\begin{itemize}
+    \item \texttt{y = linspace(x1,x2,n)} returns a row vector of \texttt{n} evenly spaced points between \texttt{x1} and \texttt{x2}. 
+    \item \texttt{[X,Y] = meshgrid(x,y)} returns 2-D grid coordinates based on the coordinates contained in the vectors \texttt{x} and \texttt{y}. \text{X} is a matrix where each row is a copy of \texttt{x}, and \texttt{Y} is a matrix where each column is a copy of \texttt{y}. The grid represented by the coordinates \texttt{X} and \texttt{Y} has \texttt{length(y)} rows and \texttt{length(x)} columns.  
+\end{itemize}
+
+% MATLAB Codes
+\section{MATLAB Code}
+Add your MATLAB code here. This section will not be included in your page limit of six pages.
+
+\begin{listing}[h]
+\inputminted{matlab}{example.m}
+\caption{Example code from external file.}
+\label{listing:examplecode}
+\end{listing}
+
+\end{appendices}
+
+\end{document}
