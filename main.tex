@@ -73,6 +73,8 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 % Abstract
 \begin{abstract}
@@ -145,131 +147,64 @@ So we can say that $p^2=(A+Bi)(A-Bi)(C+Di)(C-Di)=(A^2+B^2)(C^2+D^2)$. So because
 \section{Problems}
 
 \Problem{}
+\\
 Find all the units in $\mathbb{J}[i]$.
 \TheSolution{}{}
-Clearly known that, $1_{\mathbb{J}[i]}=1$. So if $x$ is a unit then there exists $b\in\mathbb{J}[i]$ such that xb = $1_{\mathbb{J}[i]}=1$. So $d(x)d(b) = d(1) = 1$ and because $d(x),d(b)>0$ and both are integers, $d(x)=d(b)=1$. There are four possible $x$'s satisfying $d(x)=1$ which are $1,-1,i,-i$ and also their inverses are exist and equal to $1,-1,-i,i$ respectively. So these four numbers are units of $\mathbb{J}[i]$.
+Clearly known that, $1_{\mathbb{J}[i]}=1$. So if $x$ is a unit then there exists $b\in\mathbb{J}[i]$ such that xb = $1_{\mathbb{J}[i]}=1$. So $d(x)d(b) = d(1) = 1$ and because $d(x),d(b)>0$ and both are integers, $d(x)=d(b)=1$. There are four possible $x$'s satisfying $d(x)=1$ which are $1,-1,i,-i$ and also their inverses are exist and equal to $1,-1,-i,i$ respectively. So these four numbers are units of $\mathbb{J}[i]$.\\
+
+
 
 \Problem{}
 If $a+bi$ is not a unit, prove that $a^2+b^2>1$. 
 \TheSolution{}
-Assume that $a^2+b^2=1$. Then $(a+bi)(a-bi)=a^2+b^2=1$ and so $(a+bi)$ is a unit and it gives contradiction. Note: Doesn't care about 0.
+Assume that $a^2+b^2=1$. Then $(a+bi)(a-bi)=a^2+b^2=1$ and so $(a+bi)$ is a unit and it gives contradiction. Note: Doesn't care about 0.\\
+
+
 
 \Problem{}
 Find a greatest common divisor in $\mathbb{J}[i]$:
-\begin{enumerate}[label=\alph*]
-    \item gcd(3+4i, 4-3i)
-    \ASolution{}
-    Because 3+4i
-\end{enumerate}
-% Example Subsection
-\subsection{Subsection Title}
-This is a subsection.
-
-% Example Subsubsection
-\subsubsection{Subsubsection Title}
-This is a subsubsection.
-
-%  Theoretical Background
-\section{Theoretical Background}
-Add your theoretical background here. Some example text: As we learned from our textbook \cite{kutz_2013}, Fourier introduced the concept of representing a given function $f(x)$ by a trigonometric series of sines and cosines:
-\begin{equation}
-    f(x) = \frac{a_0}{2} + \sum_{i=1}^\infty \left(a_n\cos{nx} + b_n\sin{nx}\right) \quad x \in (-\pi,\pi].
-    \label{eqn:fourierseries}
-\end{equation}
-You can reference numbered equations, figures, tables, algorithms, and code like this: Equation~\ref{eqn:fourierseries}, etc.
-
-% Algorithm Implementation and Development
-\section{Algorithm Implementation and Development}
-Add your algorithm implementation and development here. See Algorithm~\ref{alg:example} for how to include an algorithm in your document. This is how to make an \textit{ordered} list:
 \begin{enumerate}
-    \item Fluffy swallowed a marble.
-    \item I took Fluffy to the vet.
-    \item They took an ultrasound of Fluffy's intestines.
-\end{enumerate}
+    \item $gcd(3+4i, 4-3i)$\\
+    \ASolution{}
+     $3+4i$ is equal to $4-3i$ up to association. That means, $3+4i=(4-3i)i$. So their gcd is $(3+4i)$ up to association or we can say it eqauls to $(3+4i)u$ where $u$ is a unit in gaussian ring.
+    \item $gcd(18-i, 11+7i)$\\
+    \ASolution{}
+    $d(18-i)=325$ and $d(11+7i)=170$. Let $g=gcd(18-i,11+7i)$. Then, $d(g)|gcd(325,170)=5.$ So $d(g)=5$ or $d(g)=1$. Then $g$ is equal to $3+4i$, $3-4i$, or $1$ up to association. And because $3+4i$ doesn't divide $11+7i$ and $3-4i$ doesn't divide $18-i$, $g$ is $1$ up to association.
+\end{enumerate}\\
 
-\begin{algorithm}
-\begin{algorithmic}
-    \STATE{Import data from \texttt{Testdata.mat}}
-    \FOR{$j = 1:20$}
-        \STATE{Extract measurement $j$ from \texttt{Undata}}
-        \STATE{Do something useful}
-    \ENDFOR
-    \IF{$i\geq 5$} 
-        \STATE{$i\gets i-1$}
-    \ELSE
-        \IF{$i\leq 3$}
-            \STATE{$i\gets i+2$}
-        \ENDIF
-    \ENDIF 
-\end{algorithmic}
-\caption{Example Algorithm}
-\label{alg:example}
-\end{algorithm}
 
-% Computational Results
-\section{Computational Results}
-Add your computational results here. See Table~\ref{tab:mascots} for how to include a table in your document. See Figure~\ref{fig:dubs} for how to include figures in your document.
+\Problem{}
+Prove that if $p$ is a prime number of the form $4n + 3$, then there is no $x$ such that $x^2 \equiv -1 (mod p)$.
+\TheSolution{}
+Assume there exist $x$ such that $x^2 \equiv -1 (mod p)$. Then $(p-x)^2=p^2-2px+x^2 \equiv x^2 \equiv -1 (mod p)$. Let $a=min(p-x,x)$ we know that $a\leq |\frac{p}{2}|$, then $a^2+1=pk\leq |\frac{p}{2}|^2+1<p^2$. So by $Lemma\;3$, there exist $c,d\in \mathbb{Z}$ such that $c^2+d^2=p$. But we know that $c^2+d^2$ cannot be equal to $3$ in modulo $4$. Contradiction. So there is no such $x$.\\
 
-\begin{table}
-    \centering
-    \begin{tabular}{rll}
-    & Name & Years \\
-    \hline
-    1 & Frosty & 1922-1930  \\
-    2 & Frosty II & 1930-1936 \\
-    3 & Wasky & 1946 \\
-    4 & Wasky II & 1947 \\
-    5 & Ski & 1954 \\
-    6 & Denali & 1958 \\
-    7 & King Chinook & 1959-1968\\
-    8 & Regent Denali & 1969 \\
-    9 & Sundodger Denali & 1981-1992 \\
-    10 & King Redoubt & 1992-1998 \\
-    11 & Prince Redoubt & 1998 \\
-    12 & Spirit & 1999-2008 \\
-    13 & Dubs I & 2009-2018 \\
-    14 & Dubs II & 2018-Present
-    \end{tabular}
-    \caption{UW mascots as described in \cite{washington_huskies}.}
-    \label{tab:mascots}
-\end{table}
 
-% begin{figure}[tb] % t = top, b = bottom, etc.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{dubs.jpg}
-    \caption{Here is a picture of Dubs \cite{webeck_2018}. Dubs did not swallow a marble.}
-    \label{fig:dubs}
-\end{figure}
+\Problem{}
+Prove that no prime of the form $4n + 3$ can be written as $a^2+b^2$ where $a$ and $b$ are integers.
+\TheSolution{}
+$a^2+b^2\equiv0,1,2(mod\;4)$.\\
 
-% Summary and Conclusions
-\section{Summary and Conclusions}
-Add your summary and conclusions here.
 
-% References
-\printbibliography
+\Problem{}
+Prove that there is an infinite number of primes of the form $4n+3$.
+\TheSolution{}
+Assume that there are finite numbers of such prime numbers. And let the set $S=\{p_1,p_2,...,p_n\}$ be the set of them. Let $X=\prod_{i=1}^{n}p_i$ and if $X$ is of form $4n+1$, let $Q=X+2$ else let $Q=X+4$. Then we know that $Q$ is bigger than all $p_i$'s, $Q$ is of the form $4n+3$. On the other hand, the prime factorization of $Q$ is $q_1^{a_1}q_2^{a_2}...q_m^{a_m}$. No element in $S$ divides $Q$ basically, because $X$ is divided by all of them and $Q-X=2\;or\;4$ is not divided by any prime number in $S$. So all $q_i$'s are of the form $4n+1$. But then $Q$ must be of the form $4n+1$. So $Q$ also has no prime divisor of the form $4n+1$. So $Q$ is a prime of the form $4n+3$. Contradiction. So the set of prime numbers of the form $4n+3$ is not finite.\\
 
-% Appendices
-\begin{appendices}
+\Problem{}
+Prove that there is an infinite number of primes of the form $4n+1$.
+\TheSolution{}
+Assume that finite, and $S=\{p_1,p_2,...,p_n\}$ contains all primes of the form $n+1$. Let $Q=(2p_1p_2...p_n)^2+1$. $Q$ is of the form $4n+1$ and there is not any $p_i$ dividing $Q$. We can say $Q=a^2+1$ and if $Q$ has a prime divisor $p$ then we know that it is not in $S$ so it has form $4n+3$. But related to some theorem of fermat, if $p|a^2+1$ and $p$ is odd, then $p$ is of the form $4n+1$. Contradiction. So $S$ is infinite.\\
 
-% MATLAB Functions
-\section{MATLAB Functions}
-Add your important MATLAB functions here with a brief implementation explanation. This is how to make an \textbf{unordered} list:
-\begin{itemize}
-    \item \texttt{y = linspace(x1,x2,n)} returns a row vector of \texttt{n} evenly spaced points between \texttt{x1} and \texttt{x2}. 
-    \item \texttt{[X,Y] = meshgrid(x,y)} returns 2-D grid coordinates based on the coordinates contained in the vectors \texttt{x} and \texttt{y}. \text{X} is a matrix where each row is a copy of \texttt{x}, and \texttt{Y} is a matrix where each column is a copy of \texttt{y}. The grid represented by the coordinates \texttt{X} and \texttt{Y} has \texttt{length(y)} rows and \texttt{length(x)} columns.  
-\end{itemize}
 
-% MATLAB Codes
-\section{MATLAB Code}
-Add your MATLAB code here. This section will not be included in your page limit of six pages.
+\Problem{}
+Determine all the prime elements in $\mathbb{J}[i]$.
+\TheSolution{}
+Let $\pi$ be a prime element of gaussian ring. Then $d(\pi)=\pi\Bar{\pi}=a$ is an integer and has at most two prime divisor. Because if not, $\pi$ would have more than one prime divisor in gaussian ring. So $a$ could be product of two primes or $a$ is a prime number. Let $a=pq$, where $p$ and $q$ are prime numbers in integers. We know that $d(\pi\Bar{\pi})=d(\pi)d(\Bar{\pi})=d(\pi)d(\pi)=d(a)=d(pq)=d(p)d(q)$. Because $p$ and $q$ are integer primes, the only way to satisfy this equation is $p=q$. \\
+So there is two possibility. $d(\pi)=p^2$ or $d(\pi)=p$. If $\pi\Bar{\pi}=p^2$, $d(\pi)=d(\Bar{\pi}=p)$. So if $p$ is of the form $4n+3$, because $p$ couldn't be written as $a^2+b^2$, $p$ is a prime.\\
+If $d(\pi)=p$ then two conjeguate prime divisors of $p$ are prime numbers in gaussian ring if $p$ is of the form $4n+1$ or $p=2$.\\
 
-\begin{listing}[h]
-\inputminted{matlab}{example.m}
-\caption{Example code from external file.}
-\label{listing:examplecode}
-\end{listing}
-
-\end{appendices}
-
+\Problem{}
+Determine all positive integers which can be written as a sum of two squares (of integers).
+\TheSolution{}
+\\
 \end{document}
